@@ -1,0 +1,40 @@
+# LiteLLM proxy configuration for Cloud Run
+# Environment variables expected:
+# - OPENAI_API_KEY: provider key
+# - PROXY_GATEWAY_TOKEN: bearer token clients must present
+# - PROXY_MASTER_KEY: optional master key for admin/debug
+
+model_list:
+  - model_name: gpt-4o
+    litellm_params:
+      model: openai/gpt-4o
+      api_key: ${OPENAI_API_KEY}
+  - model_name: gpt-4o-mini
+    litellm_params:
+      model: openai/gpt-4o-mini
+      api_key: ${OPENAI_API_KEY}
+
+general_settings:
+  master_key: ${PROXY_MASTER_KEY}
+
+router_settings:
+  num_retries: 2
+  timeout: 60
+  drop_params: true
+
+litellm_settings:
+  telemetry: false
+  callbacks:
+    - "callbacks.logging.log_event"
+
+proxy:
+  port: ${PORT:-8080}
+  host: 0.0.0.0
+  log_level: INFO
+  enable_cors: false
+  timeout: 120
+  auth:
+    type: bearer
+    tokens:
+      - ${PROXY_GATEWAY_TOKEN}
+

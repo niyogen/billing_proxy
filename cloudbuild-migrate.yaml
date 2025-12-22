@@ -1,0 +1,17 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        # Install postgresql client
+        apt-get update && apt-get install -y postgresql-client
+        
+        # Get password from Secret Manager
+        export PGPASSWORD=$(gcloud secrets versions access latest --secret=pgpassword)
+        
+        # Get Cloud SQL IP
+        export PGHOST=$(gcloud sql instances describe litellm-billing-db --format='value(ipAddresses[0].ipAddress)')
+        
+        # Apply schema
+        psql -h $PGHOST -U litellm_user -d litellm -f db/schema.sql

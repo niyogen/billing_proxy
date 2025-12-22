@@ -1,0 +1,7 @@
+FROM python:3.11-slim
+
+RUN pip install psycopg2-binary
+
+COPY db/schema.sql /schema.sql
+
+CMD ["sh", "-c", "psql \"host=/cloudsql/${INSTANCE_CONNECTION_NAME} dbname=${PGDATABASE} user=${PGUSER}\" -f /schema.sql"]
