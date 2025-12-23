@@ -1,0 +1,41 @@
+time="2025-12-23T13:08:13+05:30" level=warning msg="C:\\Users\\Antigravity\\BillingProxy\\tests\\integration\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+app-1  | Starting LiteLLM on port 4000...
+app-1  | Starting Nginx on port 8080...
+app-1  | INFO:     Started server process [7]
+app-1  | INFO:     Waiting for application startup.
+app-1  | 
+app-1  |    ██╗     ██╗████████╗███████╗██╗     ██╗     ███╗   ███╗
+app-1  |    ██║     ██║╚══██╔══╝██╔════╝██║     ██║     ████╗ ████║
+app-1  |    ██║     ██║   ██║   █████╗  ██║     ██║     ██╔████╔██║
+app-1  |    ██║     ██║   ██║   ██╔══╝  ██║     ██║     ██║╚██╔╝██║
+app-1  |    ███████╗██║   ██║   ███████╗███████╗███████╗██║ ╚═╝ ██║
+app-1  |    ╚══════╝╚═╝   ╚═╝   ╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝
+app-1  | 
+app-1  | 
+app-1  | [1;37m#------------------------------------------------------------#[0m
+app-1  | [1;37m#                                                            #[0m
+app-1  | [1;37m#           'I get frustrated when the product...'            #[0m
+app-1  | [1;37m#        https://github.com/BerriAI/litellm/issues/new        #[0m
+app-1  | [1;37m#                                                            #[0m
+app-1  | [1;37m#------------------------------------------------------------#[0m
+app-1  | 
+app-1  |  Thank you for using LiteLLM! - Krrish & Ishaan
+app-1  | 
+app-1  | 
+app-1  | 
+app-1  | [1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+app-1  | 
+app-1  | 
+app-1  | [32mLiteLLM: Proxy initialized with Config, Set models:[0m
+app-1  | [32m    gpt-4o[0m
+app-1  | [32m    gpt-4o-mini[0m
+app-1  | INFO:     Application startup complete.
+app-1  | INFO:     Uvicorn running on http://0.0.0.0:4000 (Press CTRL+C to quit)
+app-1  | INFO:     172.22.0.1:0 - "GET /health/liveness HTTP/1.0" 200 OK
+app-1  | [92m07:34:24 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request

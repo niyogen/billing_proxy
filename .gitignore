@@ -1,7 +1,30 @@
 
-.env
-pgpass_clean.txt
+# Python
 __pycache__/
-*.pyc
-.idea/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+.env.*
+
+# Docker
+.docker/
+
+# LiteLLM
+lite_llm_proxy.db
+
+# IDE
 .vscode/
+.idea/
+
+# Testing
+.pytest_cache/
+htmlcov/
+site/
+.coverage
+coverage.xml
+tests/integration/.env.test
+tests/integration/.env.temp

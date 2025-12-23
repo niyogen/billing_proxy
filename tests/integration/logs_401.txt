@@ -1,0 +1,21 @@
+time="2025-12-23T13:38:32+05:30" level=warning msg="C:\\Users\\Antigravity\\BillingProxy\\tests\\integration\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+app-1  |     "details": [
+app-1  |       {
+app-1  |         "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+app-1  |         "reason": "API_KEY_INVALID",
+app-1  |         "domain": "googleapis.com",
+app-1  |         "metadata": {
+app-1  |           "service": "generativelanguage.googleapis.com"
+app-1  |         }
+app-1  |       },
+app-1  |       {
+app-1  |         "@type": "type.googleapis.com/google.rpc.LocalizedMessage",
+app-1  |         "locale": "en-US",
+app-1  |         "message": "API key not valid. Please pass a valid API key."
+app-1  |       }
+app-1  |     ]
+app-1  |   }
+app-1  | }
+app-1  | . Received Model Group=gemini-1.5-flash
+app-1  | Available Model Group Fallbacks=None
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 401 Unauthorized

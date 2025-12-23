@@ -1,0 +1,51 @@
+time="2025-12-23T13:52:17+05:30" level=warning msg="C:\\Users\\Antigravity\\BillingProxy\\tests\\integration\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/proxy_server.py", line 727, in proxy_startup_event
+app-1  |     prisma_client = await ProxyStartupEvent._setup_prisma_client(
+app-1  |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/proxy_server.py", line 4843, in _setup_prisma_client
+app-1  |     PrismaDBExceptionHandler.handle_db_exception(e)
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/db/exception_handler.py", line 57, in handle_db_exception
+app-1  |     PrismaDBExceptionHandler.is_database_connection_error(e)
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/db/exception_handler.py", line 37, in is_database_connection_error
+app-1  |     import prisma
+app-1  | ModuleNotFoundError: No module named 'prisma'
+app-1  | 
+app-1  | ERROR:    Application startup failed. Exiting.
+app-1  | 2025/12/23 08:22:01 [error] 10#10: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.22.0.1, server: , request: "POST /chat/completions HTTP/1.1", upstream: "http://127.0.0.1:4000/chat/completions", host: "localhost:8080"

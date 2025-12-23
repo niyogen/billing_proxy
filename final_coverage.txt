@@ -1,0 +1,14 @@
+﻿Name                                  Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------
+apply_schema.py                          37      4    89%   7-10
+apply_schema_aws.py                      42      5    88%   22-26
+callbacks\db.py                          41      1    98%   36
+callbacks\logging.py                     27      0   100%
+scripts\stripe_usage_reporter.py         19      1    95%   49
+tests\test_apply_schema.py               52      0   100%
+tests\test_apply_schema_aws.py           42      0   100%
+tests\test_callbacks_db.py               94      0   100%
+tests\test_callbacks_logging.py          42      0   100%
+tests\test_stripe_usage_reporter.py      31      0   100%
+-------------------------------------------------------------------
+TOTAL                                   427     11    97%

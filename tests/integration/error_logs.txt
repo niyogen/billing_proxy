@@ -1,0 +1,101 @@
+time="2025-12-23T13:20:07+05:30" level=warning msg="C:\\Users\\Antigravity\\BillingProxy\\tests\\integration\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:42 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:42 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:42 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:42 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:43 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:43 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:43 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:43 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:44 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:44 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:44 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:45 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:45 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request
+app-1  | [92m07:44:45 - LiteLLM Proxy:ERROR[0m: auth_exception_handler.py:79 - litellm.proxy.proxy_server.user_api_key_auth(): Exception occured - 
+app-1  | Requester IP Address:172.22.0.1
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/auth/user_api_key_auth.py", line 852, in _user_api_key_auth_builder
+app-1  |     raise ProxyException(
+app-1  | litellm.proxy._types.ProxyException
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 400 Bad Request

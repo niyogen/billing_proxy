@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run Unit Tests
+        env:
+            STRIPE_SECRET_KEY: "sk_test_dummy"
+        run: |
+          # Run tests and generate report
+          coverage run --source=. -m pytest tests/test_*.py
+          coverage report -m
+
+  integration_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Install Python dependencies for script
+        run: pip install requests psycopg2-binary
+      - name: Start Services
+        working-directory: ./tests/integration
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || 'sk-test-key' }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY || 'test-key' }}
+          PROXY_MASTER_KEY: "sk-1234"
+          PROXY_GATEWAY_TOKEN: "sk-1234"
+          STRIPE_SECRET_KEY: "sk_test_dummy"
+        run: |
+          # Create dummy .env.test for docker-compose configuration
+          touch .env.test
+          docker compose up -d --build
+          sleep 15 # Wait for services to be ready
+      - name: Run Integration Flow
+        working-directory: ./tests/integration
+        run: python test_full_flow.py
+      - name: Dump Logs on Failure
+        if: failure()
+        working-directory: ./tests/integration
+        run: docker compose logs app
+
+  load_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Install Locust
+        run: pip install locust
+      - name: Start Services
+        working-directory: ./tests/integration
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || 'sk-test-key' }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY || 'test-key' }}
+          PROXY_MASTER_KEY: "sk-1234"
+          PROXY_GATEWAY_TOKEN: "sk-1234"
+          STRIPE_SECRET_KEY: "sk_test_dummy"
+        run: |
+          touch .env.test
+          docker compose up -d --build
+          sleep 15
+      - name: Run Load Test
+        working-directory: ./tests/load
+        run: |
+          # Run short load test (10s) to verify stability
+          locust -f locustfile.py --headless -u 10 -r 2 -t 10s --host http://localhost:8080
+
+  deploy:
+    needs: [unit_tests, integration_tests, load_tests]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: 'Run Deployment Script'
+        run: |
+          chmod +x scripts/deploy_cloud_run_enhanced.sh
+          ./scripts/deploy_cloud_run_enhanced.sh
+        env:
+          PROJECT_ID: "mcpstore-474903"
+          REGION: "us-central1"
+          SERVICE: "litellm-proxy"

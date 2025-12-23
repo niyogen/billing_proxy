@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: LiteLLM Billing Proxy API
+  description: |
+    # LiteLLM Billing Proxy
+    
+    This API provides a unified interface for LLM providers (OpenAI, Anthropic, Gemini, etc.) with built-in cost tracking and billing support.
+    
+    ## 💰 Token Metering & Billing Architecture
+    
+    The service automatically meters every request and logs usage data to a PostgreSQL database. This data is the source of truth for billing.
+    
+    ### 1. Database Schema (`litellm_usage` table)
+    Every request persists a record with the following fields:
+    - `id`: Unique Log ID
+    - `tenant_id`: The `PROXY_GATEWAY_TOKEN` used for the request (identifies the client)
+    - `model`: Model name used (e.g., `gpt-4o`)
+    - `prompt_tokens`: Input token count
+    - `completion_tokens`: Output token count
+    - `total_tokens`: Total tokens
+    - `cost_usd`: Estimated cost in USD (calculated by LiteLLM based on model pricing)
+    - `created_at`: Timestamp of the request
+    
+    ### 2. Stripe Billing Integration Workflow
+    To bill your customers, you should run a periodic cron job (e.g., nightly or monthly) that aggregates this data:
+    
+    1.  **Query Usage**: Sum the `cost_usd` for a specific `tenant_id` (Customer).
+        ```sql
+        SELECT SUM(cost_usd) as total_bill 
+        FROM litellm_usage 
+        WHERE tenant_id = 'customer_token_123' 
+          AND created_at >= '2025-01-01' AND created_at < '2025-02-01';
+        ```
+    2.  **Apply Margin**: Add your profit margin (e.g., +20%).
+        `billed_amount = total_bill * 1.20`
+    3.  **Charge Stripe**: Create a Usage Record or Invoice Item in Stripe.
+        - Using Stripe Metered Billing: Send `billed_amount` to Stripe API.
+    
+    ## 🔐 Authentication
+    All endpoints require a Bearer Token.
+    `Authorization: Bearer <PROXY_GATEWAY_TOKEN>`
+    
+  version: 1.0.0
+servers:
+  - url: /
+    description: Current Service
+
+paths:
+  /v1/chat/completions:
+    post:
+      summary: Chat Completion
+      description: |
+        Standard OpenAI-compatible chat completion endpoint. 
+        Requests to this endpoint are metered and logged to the database.
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                  example: "gpt-4o"
+                messages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      role:
+                        type: string
+                      content:
+                        type: string
+              required:
+                - model
+                - messages
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  choices:
+                    type: array
+                  usage:
+                    type: object
+                    properties:
+                      prompt_tokens:
+                        type: integer
+                      completion_tokens:
+                        type: integer
+                      total_tokens:
+                        type: integer
+
+  /health:
+    get:
+      summary: Health Check
+      description: Returns service health status.
+      responses:
+        '200':
+          description: Service is healthy
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

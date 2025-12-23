@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: litellm_user
+      POSTGRES_PASSWORD: test_password
+      POSTGRES_DB: litellm
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U litellm_user -d litellm"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mock-llm:
+    build:
+      context: .
+      dockerfile: Dockerfile.mock
+    ports:
+      - "5000:5000"
+
+  app:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    env_file:
+      - .env.test
+    environment:
+      # Use test config
+      PORT: 8080
+      # DB connection
+      PGHOST: db
+      PGPORT: 5432
+      PGUSER: litellm_user
+      PGPASSWORD: test_password
+      PGDATABASE: litellm
+      PGSSL: disable # Local testing usually without SSL or self-signed
+      
+      # Keys
+      OPENAI_API_KEY: sk-test-key
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+      PROXY_GATEWAY_TOKEN: test-token-1234
+      PROXY_MASTER_KEY: sk-1234
+      
+      # Stripe (Mocked or dummy)
+      STRIPE_SECRET_KEY: sk_test_dummy
+      
+
+    volumes:
+      - ./config.test.yaml:/app/config.yaml
+    depends_on:
+      db:
+        condition: service_healthy
+      mock-llm:
+        condition: service_started
+    ports:
+      - "8080:8080"

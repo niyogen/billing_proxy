@@ -1,0 +1,21 @@
+time="2025-12-23T13:40:36+05:30" level=warning msg="C:\\Users\\Antigravity\\BillingProxy\\tests\\integration\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+app-1  |                ^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/utils.py", line 1666, in wrapper_async
+app-1  |     raise e
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/utils.py", line 1512, in wrapper_async
+app-1  |     result = await original_function(*args, **kwargs)
+app-1  |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/main.py", line 628, in acompletion
+app-1  |     raise exception_type(
+app-1  |           ^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2340, in exception_type
+app-1  |     raise e
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 503, in exception_type
+app-1  |     raise NotFoundError(
+app-1  | litellm.exceptions.NotFoundError: litellm.NotFoundError: NotFoundError: OpenAIException - <!doctype html>
+app-1  | <html lang=en>
+app-1  | <title>404 Not Found</title>
+app-1  | <h1>Not Found</h1>
+app-1  | <p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>. Received Model Group=gpt-4o
+app-1  | Available Model Group Fallbacks=None
+app-1  | INFO:     172.22.0.1:0 - "POST /chat/completions HTTP/1.0" 404 Not Found

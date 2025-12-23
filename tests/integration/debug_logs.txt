@@ -1,0 +1,359 @@
+app-1  | Starting LiteLLM on port 4000...
+app-1  | Starting Nginx on port 8080...
+app-1  | Unable to connect to DB. DATABASE_URL found in environment, but prisma package not found.
+app-1  | INFO:     Started server process [7]
+app-1  | INFO:     Waiting for application startup.
+app-1  | 
+app-1  |    ██╗     ██╗████████╗███████╗██╗     ██╗     ███╗   ███╗
+app-1  |    ██║     ██║╚══██╔══╝██╔════╝██║     ██║     ████╗ ████║
+app-1  |    ██║     ██║   ██║   █████╗  ██║     ██║     ██╔████╔██║
+app-1  |    ██║     ██║   ██║   ██╔══╝  ██║     ██║     ██║╚██╔╝██║
+app-1  |    ███████╗██║   ██║   ███████╗███████╗███████╗██║ ╚═╝ ██║
+app-1  |    ╚══════╝╚═╝   ╚═╝   ╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝
+app-1  | 
+app-1  | 
+app-1  | [1;37m#------------------------------------------------------------#[0m
+app-1  | [1;37m#                                                            #[0m
+app-1  | [1;37m#         'The worst thing about this product is...'          #[0m
+app-1  | [1;37m#        https://github.com/BerriAI/litellm/issues/new        #[0m
+app-1  | [1;37m#                                                            #[0m
+app-1  | [1;37m#------------------------------------------------------------#[0m
+app-1  | 
+app-1  |  Thank you for using LiteLLM! - Krrish & Ishaan
+app-1  | 
+app-1  | 
+app-1  | 
+app-1  | [1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new[0m
+app-1  | 
+app-1  | 
+app-1  | [32mLiteLLM: Proxy initialized with Config, Set models:[0m
+app-1  | [32m    gpt-4o[0m
+app-1  | [32m    gemini-1.5-flash[0m
+app-1  | [32m    gpt-4o-mini[0m
+app-1  | [92m08:21:57 - LiteLLM Proxy:ERROR[0m: utils.py:1926 - Failed to import Prisma client: No module named 'prisma'
+app-1  | [92m08:21:57 - LiteLLM Proxy:ERROR[0m: utils.py:1927 - This usually means 'prisma generate' hasn't been run yet.
+app-1  | [92m08:21:57 - LiteLLM Proxy:ERROR[0m: utils.py:1930 - Please run 'prisma generate' to generate the Prisma client.
+app-1  | ERROR:    Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/utils.py", line 1924, in __init__
+app-1  |     from prisma import Prisma  # type: ignore
+app-1  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+app-1  | ModuleNotFoundError: No module named 'prisma'
+app-1  | 
+app-1  | During handling of the above exception, another exception occurred:
+app-1  | 
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/proxy_server.py", line 4822, in _setup_prisma_client
+app-1  |     raise e
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/proxy_server.py", line 4818, in _setup_prisma_client
+app-1  |     prisma_client = PrismaClient(
+app-1  |                     ^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/utils.py", line 1933, in __init__
+app-1  |     raise Exception(
+app-1  | Exception: Unable to find Prisma binaries. Please run 'prisma generate' first.
+app-1  | 
+app-1  | During handling of the above exception, another exception occurred:
+app-1  | 
+app-1  | Traceback (most recent call last):
+app-1  |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 694, in lifespan
+app-1  |     async with self.lifespan_context(app) as maybe_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 202, in merged_lifespan
+app-1  |     async with original_context(app) as maybe_original_state:
+app-1  |   File "/usr/local/lib/python3.11/contextlib.py", line 210, in __aenter__
+app-1  |     return await anext(self.gen)
+app-1  |            ^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/proxy_server.py", line 727, in proxy_startup_event
+app-1  |     prisma_client = await ProxyStartupEvent._setup_prisma_client(
+app-1  |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/proxy_server.py", line 4843, in _setup_prisma_client
+app-1  |     PrismaDBExceptionHandler.handle_db_exception(e)
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/db/exception_handler.py", line 57, in handle_db_exception
+app-1  |     PrismaDBExceptionHandler.is_database_connection_error(e)
+app-1  |   File "/usr/local/lib/python3.11/site-packages/litellm/proxy/db/exception_handler.py", line 37, in is_database_connection_error
+app-1  |     import prisma
+app-1  | ModuleNotFoundError: No module named 'prisma'
+app-1  | 
+app-1  | ERROR:    Application startup failed. Exiting.
+app-1  | 2025/12/23 08:22:01 [error] 10#10: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.22.0.1, server: , request: "POST /chat/completions HTTP/1.1", upstream: "http://127.0.0.1:4000/chat/completions", host: "localhost:8080"
