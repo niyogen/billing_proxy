@@ -16,9 +16,9 @@ if ! kill -0 $LITELLM_PID; then
     exit 1
 fi
 
-# Check if port 4000 is listening
-echo "Checking LiteLLM health..."
-curl -v http://127.0.0.1:4000/health || echo "WARNING: Health check failed"
+# Check if port 4000 is listening using Python (more reliable than curl in minimal images)
+echo "Checking LiteLLM health via Python..."
+python /app/check_port.py || { echo "WARNING: Port 4000 check failed"; exit 1; }
 
 # Start Nginx in foreground
 # Substitute $PORT if needed, but we hardcoded 8080 in nginx.conf for Cloud Run

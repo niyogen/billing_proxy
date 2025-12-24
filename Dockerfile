@@ -17,6 +17,7 @@ COPY callbacks /app/callbacks
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY docs /app/docs
 COPY start.sh /app/start.sh
+COPY check_port.py /app/check_port.py
 
 # Make start script executable
 RUN chmod +x /app/start.sh
