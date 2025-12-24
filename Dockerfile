@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Install Nginx
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl ca-certificates nginx \
+    curl ca-certificates nginx openssl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy configuration and docs
