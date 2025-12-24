@@ -3,6 +3,13 @@
 # Start Billing Service on port 4001 (REMOVED)
 # python /app/proxy/billing_service.py &
 
+# Diagnostics
+echo "Current Directory: $(pwd)"
+echo "Python Version: $(python --version)"
+echo "Installed Packages:"
+pip list | grep prisma || echo "Prisma NOT installed"
+python -c "import prisma; print('Prisma import check: SUCCESS')" || echo "Prisma import check: FAILED"
+
 # Start LiteLLM in the background on port 4000
 # We use & to run it in background
 echo "Starting LiteLLM on port 4000..."
