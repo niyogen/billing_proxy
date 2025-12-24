@@ -16,6 +16,7 @@ PORT="${PORT:-8080}"
 # Database details (Cloud SQL optional; leave SQL_INSTANCE empty for external DB)
 SQL_INSTANCE="${SQL_INSTANCE:-}"
 SQL_REGION="${SQL_REGION:-us-central1}"
+DATABASE_URL="${DATABASE_URL:-}"
 PGHOST="${PGHOST:-}"
 PGPORT="${PGPORT:-5432}"
 PGDATABASE="${PGDATABASE:-litellm}"
@@ -43,13 +44,20 @@ if [[ -n "$SQL_INSTANCE" ]]; then
     --format='value(ipAddresses[0].ipAddress)')
   PGHOST="$SQL_IP"
   USE_CLOUD_SQL=1
+  USE_DB_URL=0
   echo "SQL Connection: $SQL_CONNECTION"
   echo "SQL IP: $SQL_IP"
+elif [[ -n "$DATABASE_URL" ]]; then
+  echo "==> Using external Postgres via DATABASE_URL"
+  USE_CLOUD_SQL=0
+  USE_DB_URL=1
+  echo "DATABASE_URL provided (value hidden)"
 else
   echo "==> Using external Postgres host"
   PGHOST="${PGHOST:?PGHOST must be set for external Postgres}"
   PGPORT="${PGPORT:-5432}"
   USE_CLOUD_SQL=0
+  USE_DB_URL=0
   echo "PGHOST: $PGHOST"
   echo "PGPORT: $PGPORT"
 fi
@@ -57,6 +65,19 @@ fi
 # Step 3: Deploy to Cloud Run with Secret Manager integration
 echo ""
 echo "==> Deploying service $SERVICE"
+ENV_ARGS=(
+  --set-env-vars PORT="$PORT"
+  --set-env-vars PGUSER="$PGUSER"
+  --set-env-vars PGDATABASE="$PGDATABASE"
+  --set-env-vars PGSSL=require
+)
+
+if [[ "$USE_DB_URL" -eq 1 ]]; then
+  ENV_ARGS+=(--set-env-vars DATABASE_URL="$DATABASE_URL")
+else
+  ENV_ARGS+=(--set-env-vars PGHOST="$PGHOST" --set-env-vars PGPORT="$PGPORT")
+fi
+
 gcloud run deploy "$SERVICE" \
   --image "$IMAGE" \
   --region "$REGION" \
@@ -68,12 +89,7 @@ gcloud run deploy "$SERVICE" \
   --cpu=1 \
   --memory=1Gi \
   --timeout=120 \
-  --set-env-vars PORT="$PORT" \
-  --set-env-vars PGHOST="$PGHOST" \
-  --set-env-vars PGPORT="$PGPORT" \
-  --set-env-vars PGUSER="$PGUSER" \
-  --set-env-vars PGDATABASE="$PGDATABASE" \
-  --set-env-vars PGSSL=require \
+  "${ENV_ARGS[@]}" \
   --set-secrets OPENAI_API_KEY=openai-api-key:latest \
   --set-secrets PROXY_GATEWAY_TOKEN=proxy-gateway-token:latest \
   --set-secrets PROXY_MASTER_KEY=proxy-master-key:latest \
