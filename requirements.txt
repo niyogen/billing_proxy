@@ -2,6 +2,7 @@ litellm[proxy]
 google-cloud-logging
 google-cloud-monitoring
 asyncpg
+prisma
 pytest
 pytest-asyncio
 pytest-cov
