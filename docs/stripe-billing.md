@@ -147,15 +147,47 @@ Do **NOT** hardcode keys. Store them in Google Secret Manager or GitHub Secrets.
 *   `PROXY_MASTER_KEY`: Admin key for LiteLLM.
 
 ### 2. Stripe Dashboard Setup
-1.  **Create Product**: Go to **Products** > **Add Product**.
-    *   Name: "Credits".
-    *   Price: $10.00 (One-time).
-    *   *Copy the Price ID / Link for your frontend.*
-2.  **Configure Webhook**:
+
+#### A. Create the Product (Prepaid Credits)
+Go to **Products** > **Add Product** and fill in exactly as follows:
+*   **Name**: `API Credits` (or "Standard Top-up")
+*   **Description**: `Prepaid credits for LLM API usage.`
+*   **Image**: (Optional, but looks good on checkout)
+*   **Pricing Model**: `Standard pricing`
+*   **Price**: `$10.00` (or your desired amount)
+*   **Currency**: `USD`
+*   **Billing period**: **One-time** (Critical: Do NOT select Recurring)
+*   **Unit label**: `credit pack` (This makes receipts say "1 credit pack" instead of just "1")
+*   **Marketing feature list** (visible on pricing table):
+    *   `Access to GPT-4o & Gemini 1.5`
+    *   `No monthly fees`
+    *   `Credits never expire`
+    *   `Priority Support`
+
+Once created:
+1.  Click on the the product.
+2.  Look for the **Payment Link** button or copy the **Price ID** (`price_...`) if building a custom frontend.
+
+#### B. Configure Webhooks
     *   Go to **Developers** > **Webhooks**.
     *   Endpoint URL: `https://YOUR_CLOUD_RUN_URL/webhook/stripe`
     *   Select Event: `checkout.session.completed`
     *   *Result*: You will get a Signing Secret (`whsec_...`).
+
+---
+
+### 3. Tax Configuration (Singapore GST)
+
+**GST Rate**: **9%** (as of 2024/2025).
+
+*   **Mandatory**: If your annual taxable revenue is **> $1M SGD**.
+*   **Startup Exemption**: If you earn **< $1M SGD**, you do **NOT** need to register or collect GST.
+    *   *Advice*: Don't register voluntarily unless you have high expenses to claim refunds on, as it adds compliance costs (`GST F5` filing).
+
+If you **are** registered:
+1.  **Enable Stripe Tax**: Go to **Settings** > **Tax**.
+2.  **Add Registration**: Add your Singapore GST registration details.
+3.  **Update Payment Link**: In your Payment Link settings, check "Collect tax automatically". Stripe will detect the user's location and add the 9% on top of your $10 price.
 
 ---
 

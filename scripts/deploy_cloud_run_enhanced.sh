@@ -66,6 +66,8 @@ gcloud run deploy "$SERVICE" \
   --set-secrets PROXY_GATEWAY_TOKEN=proxy-gateway-token:latest \
   --set-secrets PROXY_MASTER_KEY=proxy-master-key:latest \
   --set-secrets PGPASSWORD=pgpassword:latest \
+  --set-secrets STRIPE_API_KEY=stripe-api-key:latest \
+  --set-secrets STRIPE_WEBHOOK_SECRET=stripe-webhook-secret:latest \
   --add-cloudsql-instances="$SQL_CONNECTION" \
   --project="$PROJECT_ID"
 
