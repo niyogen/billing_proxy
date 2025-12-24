@@ -66,7 +66,6 @@ fi
 echo ""
 echo "==> Deploying service $SERVICE"
 ENV_ARGS=(
-  --set-env-vars PORT="$PORT"
   --set-env-vars PGUSER="$PGUSER"
   --set-env-vars PGDATABASE="$PGDATABASE"
   --set-env-vars PGSSL=require
