@@ -20,8 +20,6 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run Unit Tests
-        env:
-            STRIPE_SECRET_KEY: "sk_test_dummy"
         run: |
           # Run tests and generate report
           coverage run --source=. -m pytest tests/test_*.py
@@ -42,7 +40,7 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY || 'test-key' }}
           PROXY_MASTER_KEY: "sk-1234"
           PROXY_GATEWAY_TOKEN: "sk-1234"
-          STRIPE_SECRET_KEY: "sk_test_dummy"
+
         run: |
           # Create dummy .env.test for docker-compose configuration
           touch .env.test
@@ -75,7 +73,7 @@ jobs:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY || 'test-key' }}
           PROXY_MASTER_KEY: "sk-1234"
           PROXY_GATEWAY_TOKEN: "sk-1234"
-          STRIPE_SECRET_KEY: "sk_test_dummy"
+
         run: |
           touch .env.test
           docker compose up -d --build

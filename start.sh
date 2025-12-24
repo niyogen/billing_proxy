@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Start Billing Service on port 4001
-echo "Starting Billing Service on port 4001..."
-python /app/proxy/billing_service.py &
+# Start Billing Service on port 4001 (REMOVED)
+# python /app/proxy/billing_service.py &
 
 # Start LiteLLM in the background on port 4000
 # We use & to run it in background

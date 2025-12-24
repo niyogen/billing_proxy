@@ -2,12 +2,10 @@ litellm[proxy]
 google-cloud-logging
 google-cloud-monitoring
 asyncpg
-stripe
 pytest
 pytest-asyncio
 pytest-cov
 requests
 psycopg2-binary
 locust
-flask
 zope.event
