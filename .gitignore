@@ -28,3 +28,9 @@ site/
 coverage.xml
 tests/integration/.env.test
 tests/integration/.env.temp
+
+# Secrets
+key.json
+*.json
+!test_request.json
+
