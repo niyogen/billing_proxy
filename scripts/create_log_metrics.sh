@@ -27,3 +27,4 @@ gcloud logging metrics create litellm_cost_usd \
 
 echo "Done."
 
+

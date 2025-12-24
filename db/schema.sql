@@ -17,3 +17,4 @@ CREATE INDEX IF NOT EXISTS idx_litellm_usage_created_at ON litellm_usage (create
 CREATE INDEX IF NOT EXISTS idx_litellm_usage_tenant ON litellm_usage (tenant_id);
 CREATE INDEX IF NOT EXISTS idx_litellm_usage_request_id ON litellm_usage (request_id);
 
+

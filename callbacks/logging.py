@@ -81,3 +81,4 @@ async def log_event(
 
     print(json.dumps(log_record), flush=True)
 
+

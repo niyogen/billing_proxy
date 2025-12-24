@@ -213,3 +213,4 @@ You need to cover **Stripe Fees** (~2.9% + 30¢) and **Platform Overhead**.
 *   **Memory**: LiteLLM is lightweight. `1GiB` is sufficient for up to ~50 concurrent requests.
 *   **CPU**: 1 vCPU is standard.
 *   **Scaling**: Cloud Run handles this automatically. If you hit 1000s of users, increase `max_instances`.
+

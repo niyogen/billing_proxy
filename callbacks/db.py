@@ -140,3 +140,4 @@ async def log_event(
     except Exception as exc:  # pragma: no cover - defensive
         print(f"pg_callback: log_event failed: {exc}")
 
+

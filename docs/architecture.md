@@ -51,3 +51,4 @@
 - Encrypt secrets; prefer Secret Manager → environment variables; rotate keys.
 - Verify Stripe webhook signatures; use idempotency keys for usage writes.
 
+
