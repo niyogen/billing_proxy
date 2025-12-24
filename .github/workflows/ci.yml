@@ -109,3 +109,5 @@ jobs:
           PROJECT_ID: "mcpstore-474903"
           REGION: "us-central1"
           SERVICE: "litellm-proxy"
+          SQL_INSTANCE: ""
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
