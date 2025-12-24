@@ -6,7 +6,7 @@
 # Start LiteLLM in the background on port 4000
 # We use & to run it in background
 echo "Starting LiteLLM on port 4000..."
-litellm --config /app/config.yaml --port 4000 --host 0.0.0.0 &
+litellm --config /app/config.yaml --port 4000 --host 0.0.0.0 --debug &
 LITELLM_PID=$!
 
 # Wait for LiteLLM to start (5 seconds)
@@ -15,6 +15,10 @@ if ! kill -0 $LITELLM_PID; then
     echo "ERROR: LiteLLM failed to start!"
     exit 1
 fi
+
+# Check if port 4000 is listening
+echo "Checking LiteLLM health..."
+curl -v http://127.0.0.1:4000/health || echo "WARNING: Health check failed"
 
 # Start Nginx in foreground
 # Substitute $PORT if needed, but we hardcoded 8080 in nginx.conf for Cloud Run
