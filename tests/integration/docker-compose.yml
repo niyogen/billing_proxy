@@ -26,8 +26,8 @@ services:
     build:
       context: ../..
       dockerfile: Dockerfile
-    env_file:
-      - .env.test
+    command: ["litellm", "--config", "/app/config.yaml", "--port", "8080", "--host", "0.0.0.0"]
+    # env_file removed to avoid conflicts
     environment:
       # Use test config
       PORT: 8080

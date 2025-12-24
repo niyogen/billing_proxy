@@ -17,6 +17,10 @@ model_list:
 general_settings:
   master_key: ${PROXY_MASTER_KEY}
 
+litellm_settings:
+  success_callback: ["callbacks.logging.log_event", "callbacks.db.log_event"]
+  failure_callback: ["callbacks.logging.log_event", "callbacks.db.log_event"]
+
 proxy:
   port: ${PORT:-8080}
   host: 0.0.0.0

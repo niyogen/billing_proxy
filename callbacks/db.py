@@ -12,7 +12,9 @@ from __future__ import annotations
 
 import asyncio
 import os
+import sys
 import ssl
+from datetime import datetime
 from typing import Any, Dict, Optional
 
 import asyncpg
@@ -101,30 +103,40 @@ async def log_event(
     """
     LiteLLM callback: persists request usage to Postgres.
     """
-    pool = await _get_pool()
-    if not pool:
-        return
-
-    usage = (response_data or {}).get("usage") or {}
-    latency_ms = int((end_time - start_time) * 1000)
-
-    row = {
-        "tenant_id": (request_data or {}).get("metadata", {}).get("tenant_id"),
-        "model": (request_data or {}).get("model"),
-        "prompt_tokens": usage.get("prompt_tokens"),
-        "completion_tokens": usage.get("completion_tokens"),
-        "total_tokens": usage.get("total_tokens"),
-        "latency_ms": latency_ms,
-        "status": (response_data or {}).get("status")
-        or (response_data or {}).get("status_code"),
-        "cost_usd": (response_data or {}).get("response_cost")
-        or (response_data or {}).get("metadata", {}).get("response_cost"),
-        "request_id": (response_data or {}).get("id")
-        or (response_data or {}).get("request_id"),
-    }
-
     try:
+        pool = await _get_pool()
+        if not pool:
+            print("pg_callback: pool is None", file=sys.stderr)
+            return
+
+        try:
+            diff = end_time - start_time
+            if hasattr(diff, "total_seconds"):
+                latency_ms = int(diff.total_seconds() * 1000)
+            else:
+                latency_ms = int(diff * 1000)
+        except Exception as e:
+            print(f"pg_callback: latency calc failed: {e}", file=sys.stderr)
+            latency_ms = 0
+
+        usage = (response_data or {}).get("usage") or {}
+        
+        row = {
+            "tenant_id": (request_data or {}).get("metadata", {}).get("tenant_id"),
+            "model": (request_data or {}).get("model"),
+            "prompt_tokens": usage.get("prompt_tokens"),
+            "completion_tokens": usage.get("completion_tokens"),
+            "total_tokens": usage.get("total_tokens"),
+            "latency_ms": latency_ms,
+            "status": (response_data or {}).get("status")
+            or (response_data or {}).get("status_code"),
+            "cost_usd": (response_data or {}).get("response_cost")
+            or (response_data or {}).get("metadata", {}).get("response_cost"),
+            "request_id": (response_data or {}).get("id")
+            or (response_data or {}).get("request_id"),
+        }
+        
         await _insert(pool, row)
     except Exception as exc:  # pragma: no cover - defensive
-        print(f"pg_callback: insert failed: {exc}")
+        print(f"pg_callback: log_event failed: {exc}")
 

@@ -6,9 +6,9 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 
 # Config
-PROXY_URL = "http://localhost:8080"
+PROXY_URL = "http://127.0.0.1:8080"
 DB_CONFIG = {
-    "host": "localhost",
+    "host": "127.0.0.1",
     "port": 5432,
     "user": "litellm_user",
     "password": "test_password",
@@ -59,7 +59,7 @@ def test_proxy_request():
 def verify_database(request_id):
     print("Verifying database record...")
     # It might take a moment for async write
-    time.sleep(2)
+    time.sleep(5)
     
     try:
         conn = psycopg2.connect(**DB_CONFIG)
@@ -99,14 +99,12 @@ def main():
         # Let's apply it here for simplicity
         print("Applying schema...")
         conn = psycopg2.connect(**DB_CONFIG)
+        cur = conn.cursor()
         with open("../../db/schema.sql", "r") as f:
             sql = f.read()
-            # Split by ';' if needed or run as full script
-            # psycopg2 execute can run multiple statements usually if properly formatted
-            cur = conn.cursor()
             cur.execute(sql)
             conn.commit()
-            cur.close()
+        cur.close()
         conn.close()
         print("Schema applied.")
         
