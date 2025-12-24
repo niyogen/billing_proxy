@@ -14,5 +14,5 @@ def check_port(host, port, timeout=5):
     return False
 
 if __name__ == "__main__":
-    if not check_port("127.0.0.1", 4000, timeout=30):
+    if not check_port("127.0.0.1", 4000, timeout=120):
         sys.exit(1)
