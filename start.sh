@@ -10,6 +10,16 @@ echo "Installed Packages:"
 pip list | grep prisma || echo "Prisma NOT installed"
 python -c "import prisma; print('Prisma import check: SUCCESS')" || echo "Prisma import check: FAILED"
 
+# Generate Prisma Client
+echo "Generating Prisma Client..."
+SCHEMA_PATH=$(find /usr/local/lib -name schema.prisma | grep "litellm/proxy/schema.prisma" | head -n 1)
+if [ -z "$SCHEMA_PATH" ]; then
+    echo "ERROR: Could not find schema.prisma"
+    exit 1
+fi
+echo "Found schema at: $SCHEMA_PATH"
+prisma generate --schema "$SCHEMA_PATH"
+
 # Start LiteLLM in the background on port 4000
 # We use & to run it in background
 echo "Starting LiteLLM on port 4000..."
