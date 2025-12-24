@@ -12,7 +12,9 @@ graph LR
     Proxy -->|OpenAI Protocol| OpenAI[OpenAI API]
     Proxy -->|Google Protocol| Gemini[Gemini API]
 ```
+ 
 
+ 
 ## 🚀 Features
 - **Unified Interface**: OpenAI-compatible API (`/v1/chat/completions`) for all models.
 - **Centralized Auth**: Manage access via Proxy Master Keys and Gateway Tokens.
