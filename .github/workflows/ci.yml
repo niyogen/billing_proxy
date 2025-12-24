@@ -110,4 +110,4 @@ jobs:
           REGION: "us-central1"
           SERVICE: "litellm-proxy"
           SQL_INSTANCE: ""
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL: "postgresql://postgres:it371Ananda@agent-marketplace-db.cmt466aga8u0.us-east-1.rds.amazonaws.com:5432/niyogen_usage_db?sslmode=require"
