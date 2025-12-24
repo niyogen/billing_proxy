@@ -13,9 +13,11 @@ MIN_INSTANCES="${MIN_INSTANCES:-1}"
 MAX_INSTANCES="${MAX_INSTANCES:-50}"
 PORT="${PORT:-8080}"
 
-# Cloud SQL instance details
-SQL_INSTANCE="${SQL_INSTANCE:-litellm-billing-db}"
+# Database details (Cloud SQL optional; leave SQL_INSTANCE empty for external DB)
+SQL_INSTANCE="${SQL_INSTANCE:-}"
 SQL_REGION="${SQL_REGION:-us-central1}"
+PGHOST="${PGHOST:-}"
+PGPORT="${PGPORT:-5432}"
 PGDATABASE="${PGDATABASE:-litellm}"
 PGUSER="${PGUSER:-litellm_user}"
 
@@ -29,18 +31,28 @@ echo ""
 echo "==> Building Docker image: $IMAGE"
 gcloud builds submit --tag "$IMAGE" --project="$PROJECT_ID" .
 
-# Step 2: Get Cloud SQL connection name
+# Step 2: Determine database connection (Cloud SQL vs external)
 echo ""
-echo "==> Getting Cloud SQL connection details"
-SQL_CONNECTION=$(gcloud sql instances describe "$SQL_INSTANCE" \
-  --project="$PROJECT_ID" \
-  --format='value(connectionName)')
-SQL_IP=$(gcloud sql instances describe "$SQL_INSTANCE" \
-  --project="$PROJECT_ID" \
-  --format='value(ipAddresses[0].ipAddress)')
-
-echo "SQL Connection: $SQL_CONNECTION"
-echo "SQL IP: $SQL_IP"
+if [[ -n "$SQL_INSTANCE" ]]; then
+  echo "==> Getting Cloud SQL connection details"
+  SQL_CONNECTION=$(gcloud sql instances describe "$SQL_INSTANCE" \
+    --project="$PROJECT_ID" \
+    --format='value(connectionName)')
+  SQL_IP=$(gcloud sql instances describe "$SQL_INSTANCE" \
+    --project="$PROJECT_ID" \
+    --format='value(ipAddresses[0].ipAddress)')
+  PGHOST="$SQL_IP"
+  USE_CLOUD_SQL=1
+  echo "SQL Connection: $SQL_CONNECTION"
+  echo "SQL IP: $SQL_IP"
+else
+  echo "==> Using external Postgres host"
+  PGHOST="${PGHOST:?PGHOST must be set for external Postgres}"
+  PGPORT="${PGPORT:-5432}"
+  USE_CLOUD_SQL=0
+  echo "PGHOST: $PGHOST"
+  echo "PGPORT: $PGPORT"
+fi
 
 # Step 3: Deploy to Cloud Run with Secret Manager integration
 echo ""
@@ -57,8 +69,8 @@ gcloud run deploy "$SERVICE" \
   --memory=1Gi \
   --timeout=120 \
   --set-env-vars PORT="$PORT" \
-  --set-env-vars PGHOST="$SQL_IP" \
-  --set-env-vars PGPORT=5432 \
+  --set-env-vars PGHOST="$PGHOST" \
+  --set-env-vars PGPORT="$PGPORT" \
   --set-env-vars PGUSER="$PGUSER" \
   --set-env-vars PGDATABASE="$PGDATABASE" \
   --set-env-vars PGSSL=require \
@@ -68,7 +80,7 @@ gcloud run deploy "$SERVICE" \
   --set-secrets PGPASSWORD=pgpassword:latest \
   --set-secrets STRIPE_API_KEY=stripe-api-key:latest \
   --set-secrets STRIPE_WEBHOOK_SECRET=stripe-webhook-secret:latest \
-  --add-cloudsql-instances="$SQL_CONNECTION" \
+  $( [[ "$USE_CLOUD_SQL" -eq 1 ]] && echo "--add-cloudsql-instances=$SQL_CONNECTION" ) \
   --project="$PROJECT_ID"
 
 # Step 4: Get service URL
