@@ -23,7 +23,7 @@ COPY check_port.py /app/check_port.py
 RUN chmod +x /app/start.sh
 
 # Install python dependencies
-RUN pip install --no-cache-dir "litellm[proxy]" google-cloud-logging google-cloud-monitoring asyncpg
+RUN pip install --no-cache-dir "litellm[proxy]" google-cloud-logging google-cloud-monitoring asyncpg prisma
 
 # Cloud Run sets PORT
 ENV PORT=8080
